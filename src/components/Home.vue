@@ -57,7 +57,9 @@
 
 <script>
 import Navbar from '@/components/navbar.vue';
-import { db } from '@/firebase';
+import { db, auth } from '@/firebase';
+// import { signOut } from 'firebase/auth';
+
 import {
   collection,
   onSnapshot,
@@ -98,6 +100,11 @@ export default {
       updateDoc(doc(collectionRef, id), {
         done: !this.todos[index].done,
       });
+    },
+    logout: async function () {
+      console.log(auth.currentUser);
+
+      // await signOut(auth);
     },
   },
   mounted: async function () {
